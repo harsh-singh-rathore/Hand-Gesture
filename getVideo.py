@@ -2,6 +2,7 @@ from typing import Dict
 import numpy as np
 import cv2 as cv
 import imutils
+from processImage import *
 
 
 def videoCamera(cameraNumber : int, textFormat : dict, roiSize : dict):
@@ -31,7 +32,7 @@ def videoCamera(cameraNumber : int, textFormat : dict, roiSize : dict):
 
         ###################################################
         # all the function calls are here
-        processedImage, frame = imageProcessing(frame, roiSize)
+        processedImage, frame = imageProcessing(frame, roiSize, font, linType)
         ###################################################
 
         # Display the resulting frame
@@ -51,20 +52,6 @@ def videoCamera(cameraNumber : int, textFormat : dict, roiSize : dict):
 
 
 
-# Image processing 
-def imageProcessing(frame : np.ndarray, roiSize : dict):
-    # define ROI 
-    x = roiSize['x']
-    y = roiSize['y']
-    l = roiSize['l']
-    w = roiSize['w']
-
-    roi = frame[y:y+w, x:x+l]
-    cv.rectangle(frame, (x,y),(x+l,y+w),(0,255,0),3)
-
-    return roi, frame
-
-
 def main():
     textFormat = {
         "font": cv.FONT_HERSHEY_SIMPLEX,
@@ -73,11 +60,13 @@ def main():
         "thickness": 2
     }
     roiSize = {
-        "x": 300,
+        "x": 400,
         "y": 100,
         "l": 200,
-        "w": 300
+        "w": 300,
+        "dialationKernelSize": 3
     }
+
     videoCamera(0, textFormat, roiSize)
     exit()
 
