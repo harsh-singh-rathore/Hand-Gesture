@@ -16,10 +16,11 @@ textFormat = {
     "thickness": 2
 }
 roiSize = {
-    "x": 100,
+    "x": 400,
     "y": 100,
-    "l": 100,
-    "w": 100
+    "l": 200,
+    "w": 300,
+    "dialationKernelSize": 3
 }
 ####################################
 
@@ -27,9 +28,8 @@ roiSize = {
 
 
 def main():
-    print("hello world")
-
-    videoCamera(cameraNumber= cameraNumber, textFormat)
+    videoCamera(0, textFormat, roiSize)
+    exit()
     
 
 if __name__ == '__main__':

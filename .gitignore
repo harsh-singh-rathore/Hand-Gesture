@@ -1,4 +1,4 @@
 env/
 .vscode/
 test.py
-__pycache__/processImage.cpython-38.pyc
+*.pyc
